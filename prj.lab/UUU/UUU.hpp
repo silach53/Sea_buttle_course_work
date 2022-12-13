@@ -20,8 +20,10 @@
 
 class game {
 public:
+	int const N = 10;
+	int const M = 10;
+	bool                   b0_feeled       = false;
 	bool                   b1_feeled       = false;
-	bool                   b2_feeled       = false;
 	int                    whos_tern       = 0;
 	bool                   end_of_the_game = false;
 	int					   who_won         = -1;
@@ -29,7 +31,8 @@ public:
 	const int			   m               = 10;
 	const std::vector<int> ship_roster     = { 1,1 };
 	
-	bool fill_board(int bot_id, std::vector < std::vector<int>> X);
+	bool fill_board(int bot_id, std::vector<std::vector<int>>& X);
+	bool fill_board_C(int bot_id, int** X);
 	bool make_a_move(int bot_id, int i, int j);
 	void print_board();
 	game();
@@ -42,6 +45,13 @@ private:
 		std::map<std::pair<int, int>, int>& used,std::vector<int> counter, int& num,
 		std::map<std::pair<int, int>, int>& otvet,int& co);
 	std::vector<int> DFS(const std::vector < std::vector<int>>& X);
+	std::vector < std::vector<int>> X_to_Y(int** X) {
+		std::vector < std::vector<int>> Y(N, std::vector <int>(M));
+		for (int i = 0; i < N; ++i)
+			for (int j = 0; j < M; ++j)
+				Y[i][j] = X[i][j];
+		return Y;
+	}
 };
 
 

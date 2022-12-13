@@ -1,6 +1,4 @@
-﻿#include <UUU/UUU.h>
-#include <set>
-
+﻿#include <UUU/UUU.hpp>
 const std::vector<std::vector<int>> CB = {
 	{0,0,0,0,0,0,0,0,0,0},
 	{0,0,0,0,0,0,0,0,0,0},
@@ -42,7 +40,7 @@ void random_board(std::vector<std::vector<int>>& Y,std::vector<int> roster) {
 
 //Random bot
 void bot0_make_a_move(game& state) {
-	if (state.b1_feeled == false) {
+	if (state.b0_feeled == false) {
 		std::vector<std::vector<int>> X(state.n, std::vector<int>(state.m));
 		while (!state.fill_board(0, X)) {
 			random_board(X,state.ship_roster);
@@ -59,10 +57,10 @@ void bot0_make_a_move(game& state) {
 
 //Deterministic bot
 void bot1_make_a_move(game& state) {
-	if (state.b2_feeled == false) {
-		std::vector<std::vector<int>> X(state.n, std::vector<int>(state.m));
-		X = CB;
-		if (!state.fill_board(1, CB))
+	if (state.b1_feeled == false) {
+		std::vector<std::vector<int>> TMP;
+		TMP = CB;
+		if (!state.fill_board(1, TMP))
 			std::cout << "You made your board incorrecly";
 		return;
 	}
@@ -78,9 +76,6 @@ int main() {
 	game board_statу;
 	
 	srand(time(NULL));
-
-	//std::vector<std::vector<int>> tmp = CB;
-	//board_statу.public_dfs(tmp);
 
 	while (true) {
 		bot0_make_a_move(board_statу);

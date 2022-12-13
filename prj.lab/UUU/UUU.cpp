@@ -1,4 +1,4 @@
-#include <UUU/UUU.h>
+#include <UUU/UUU.hpp>
 #include <vector>
 #include <map> 
 
@@ -19,12 +19,7 @@ void game::pass_tern() {
 				flag_1++;
 			if (board.first[i][j] == 3)
 				flag_11++;
-
-
-
-
 		}
-
 
 	int flag_2 = 0;
 	int flag_22 = 0;
@@ -35,7 +30,6 @@ void game::pass_tern() {
 			if (board.second[i][j] == 3)
 				flag_22++;
 		}
-
 
 	if (((flag_1==0) && (flag_11>0) || ((flag_2 == 0) && (flag_22 > 0)))) {
 		if (flag_1!=0)
@@ -63,8 +57,12 @@ void game::print_board() {
 		std::cout << "-";
 	std::cout << "\n";
 }
+bool game::fill_board_C(int bot_id, int** Y) {
+	return 	 fill_board(bot_id,X_to_Y(Y));
+}
+bool game::fill_board(int bot_id, std::vector < std::vector<int>>& X) {
 
-bool game::fill_board(int bot_id, std::vector < std::vector<int>> X) {
+
 	if (!chek_bot(bot_id))
 		return false;
 
@@ -85,11 +83,11 @@ bool game::fill_board(int bot_id, std::vector < std::vector<int>> X) {
 
 	if (bot_id == 0) {
 		board.first = X;
-		b1_feeled = true;
+		b0_feeled = true;
 	}
 	else {
 		board.second = X;
-		b2_feeled = true;
+		b1_feeled = true;
 	}
 
 	pass_tern();
@@ -98,7 +96,7 @@ bool game::fill_board(int bot_id, std::vector < std::vector<int>> X) {
 }
 
 bool game::make_a_move(int bot_id, int i, int j) {
-	if (!chek_bot(bot_id) && !(b1_feeled) && !(b2_feeled))
+	if (!chek_bot(bot_id) && !(b0_feeled) && !(b1_feeled))
 		return false;
 
 
