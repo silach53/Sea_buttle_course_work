@@ -5,13 +5,13 @@
 extern "C" {
 #endif
 
-	int const N = 10;
-	int const M = 10;
-	int const RS = 10;
+	const int N = 10;
+	const int M = 10;
+	const int RS= 2;
 
 	struct game;
 	struct game* makegame();
-	bool fill_board(struct game* g, int bot_id, int** X);
+	bool fill_board(struct game* g, int bot_id, int* X);
 	bool make_a_move(struct game* g, int bot_id, int i, int j);
 	void print_board(struct game* g);
 	bool end_of_the_game(struct game* g);

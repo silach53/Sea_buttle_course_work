@@ -57,7 +57,7 @@ void game::print_board() {
 		std::cout << "-";
 	std::cout << "\n";
 }
-bool game::fill_board_C(int bot_id, int** Y) {
+bool game::fill_board_C(int bot_id, int* Y) {
 	return 	 fill_board(bot_id,X_to_Y(Y));
 }
 bool game::fill_board(int bot_id, std::vector < std::vector<int>>& X) {

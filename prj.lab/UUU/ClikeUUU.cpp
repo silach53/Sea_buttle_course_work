@@ -7,8 +7,7 @@ extern "C" {
 	struct game* makegame() {
 		return new game();
 	}
-	bool fill_board(game* g, int bot_id, int** X) {
-
+	bool fill_board(game* g, int bot_id, int* X) {
 		return g->fill_board_C(bot_id, X);
 	}
 	bool make_a_move(game* g, int bot_id, int i, int j) {
@@ -31,8 +30,11 @@ extern "C" {
 	}
 	int* ship_roster(game* g) {
 		int rost[RS];
-		for (int i = 0; i < RS; ++i)
+		for (int i = 0; i < RS; ++i) {
 			rost[i] = g->ship_roster[i];
+			std::cout << rost[i] << " ";
+		}
+		std::cout << "\n\n";
 		return rost;
 	}
 };

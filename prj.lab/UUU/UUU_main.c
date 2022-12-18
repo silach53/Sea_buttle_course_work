@@ -1,25 +1,14 @@
 ﻿#include <UUU/ClikeUUU.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-const int CB[10][10] = {
-	{0,0,0,0,0,0,0,0,0,0},
-	{0,0,0,0,0,0,0,0,0,0},
-	{0,0,0,0,0,0,0,0,0,0},
-	{0,0,0,0,0,0,0,0,0,0},
-	{0,0,0,0,0,1,0,0,0,0},
-	{0,0,0,0,0,0,0,0,0,0},
-	{0,0,0,0,0,0,0,0,0,0},
-	{0,0,0,0,0,0,1,0,0,0},
-	{0,0,0,0,0,0,0,0,0,0},
-	{0,0,0,0,0,0,0,0,0,0}
-};
 
-void random_board(int* Y[10][10] ,int roster[2]) {
-	int n = N, m = M;
-	int X[10][10];
-
+void random_board(int* Y,int* roster) {
+	int* X = (int*)malloc(N * M * sizeof(int));
+	for (int i = 0; i < N; ++i) for (int j = 0; j < M; ++j) X[i*N+j] = 0;
 	//Заполняет доску 
-
+	int n = N, m = M;
 	//Кораблики не должны стоять рядом - но попробуем на это забить
 	int i, j, or;
 	for (int t = 0; t < RS; ++t) {
@@ -30,29 +19,46 @@ void random_board(int* Y[10][10] ,int roster[2]) {
 
 		if (or == 0) {
 			for (int k = 0; k < x; ++k)
-				X[i+k][j] = 1;
+				X[(i+k)*N+j] = 1;
 		}
 		else {
 			for (int k = 0; k < x; ++k)
-				X[i][j+k] = 1;
+				X[i*N+(j+k)] = 1;
 		}
 	}
+	for (int i = 0; i < N; ++i) {
+		for (int j = 0; j < M; ++j)
+			printf("%d", X[i * N + j]);
+		printf("\n");
+	}
 
+	printf("\n");
 	Y = X;
 }
+
 //Random bot
 void bot0_make_a_move(struct game* state) {
-	if (b0_feeled(state) == false) {
-		int X[10][10];
-		for (int i = 0; i < N; ++i) for (int j = 0; j < M; ++j) X[i][j] = 0;
-		while (!fill_board(state,0, X)) {
-			random_board(X,ship_roster(state));
+	if (b0_feeled(state) == 0) {
+		//Штука для бота
+		int* X = (int*)malloc(N * M * sizeof(int));
+		for (int i = 0; i < N; ++i) for (int j = 0; j < M; ++j) X[i*N+j] = 0;
+
+		while (!fill_board(state, 0, X)) {
+			random_board(X, ship_roster(state));
+			
+			
+			for (int i = 0; i < N; ++i) {
+				for (int j = 0; j < M; ++j)
+					printf("%d", X[i*N+j]);
+				printf("\n");
+			}
 			//state.print_board();
 		}
 		return;
 	}
-	int i=0, j=0;//заполнить случайными 
-	while (!make_a_move(state,0, i, j)) {
+
+	int i = 0, j = 0;//заполнить случайными 
+	while (!make_a_move(state, 0, i, j)) {
 		i = rand() % N;
 		j = rand() % M;
 	}
@@ -60,8 +66,17 @@ void bot0_make_a_move(struct game* state) {
 
 //Deterministic bot
 void bot1_make_a_move(struct game* state) {
-	if (b1_feeled(state) == false) {
-		if (!fill_board(state,1, CB))
+	int* CB = (int*)malloc(N * M * sizeof(int));
+	for (int i = 0; i < N; ++i)
+		for (int j = 0; j < M; ++j)
+			CB[i * N + j] = 0;
+	
+	CB[5 * N + 5] = 1;
+	CB[8 * N + 3] = 1;
+
+	
+	if (b1_feeled(state) == 0) {
+		if (!fill_board(state,1,CB))
 			printf("You made your board incorrecly\n");
 		return;
 	}
@@ -74,13 +89,20 @@ void bot1_make_a_move(struct game* state) {
 }
 
 int main() {
+	/*
+	const int aba = 10;
+	int* x = (int*)malloc(aba * sizeof(int));
+	x[1] = 1;
+	printf("%d", x[1]);
+	*/
+	
 	struct game* board_statу = makegame();
+	//board_statу.N;
 	
 	srand(time(NULL));
 
-	while (true) {
+	while (1) {
 		bot0_make_a_move(board_statу);
-
 		if (end_of_the_game(board_statу)) {
 			break;
 		}

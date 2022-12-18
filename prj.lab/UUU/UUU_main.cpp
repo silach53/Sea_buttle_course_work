@@ -1,5 +1,5 @@
 ﻿#include <UUU/UUU.hpp>
-const std::vector<std::vector<int>> CB = {
+std::vector<std::vector<int>> CB = {
 	{0,0,0,0,0,0,0,0,0,0},
 	{0,0,0,0,0,0,0,0,0,0},
 	{0,0,0,0,0,0,0,0,0,0},
@@ -75,6 +75,7 @@ void bot1_make_a_move(game& state) {
 int main() {
 	game board_statу;
 	
+
 	srand(time(NULL));
 
 	while (true) {
