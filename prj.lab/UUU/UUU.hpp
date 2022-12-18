@@ -33,7 +33,7 @@ public:
 	const std::vector<std::vector<int>> CB;
 
 	bool fill_board(int bot_id, std::vector<std::vector<int>>& X);
-	bool fill_board_C(int bot_id, const int* X);
+	bool fill_board_C(int bot_id, const long* X);
 	bool make_a_move(int bot_id, int i, int j);
 	void print_board();
 	game();
@@ -45,7 +45,7 @@ private:
 		std::map<std::pair<int, int>, int>& used, std::vector<int> counter, int& num,
 		std::map<std::pair<int, int>, int>& otvet, int& co);
 	std::vector<int> DFS(const std::vector < std::vector<int>>& X);
-	std::vector < std::vector<int>> X_to_Y(const int* X) {
+	std::vector < std::vector<int>> X_to_Y(const long* X) {
 		std::vector < std::vector<int>> Y(n, std::vector <int>(m));
 		for (int i = 0; i < n; ++i)
 			for (int j = 0; j < m; ++j)
