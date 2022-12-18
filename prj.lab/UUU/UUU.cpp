@@ -31,8 +31,8 @@ void game::pass_tern() {
 				flag_22++;
 		}
 
-	if (((flag_1==0) && (flag_11>0) || ((flag_2 == 0) && (flag_22 > 0)))) {
-		if (flag_1!=0)
+	if (((flag_1 == 0) && (flag_11 > 0) || ((flag_2 == 0) && (flag_22 > 0)))) {
+		if (flag_1 != 0)
 			who_won = 0;
 		else
 			who_won = 1;
@@ -57,8 +57,8 @@ void game::print_board() {
 		std::cout << "-";
 	std::cout << "\n";
 }
-bool game::fill_board_C(int bot_id, int* Y) {
-	return 	 fill_board(bot_id,X_to_Y(Y));
+bool game::fill_board_C(int bot_id, const int* Y) {
+	return 	 fill_board(bot_id, X_to_Y(Y));
 }
 bool game::fill_board(int bot_id, std::vector < std::vector<int>>& X) {
 

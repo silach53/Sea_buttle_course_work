@@ -1,13 +1,13 @@
-#include "UUU.hpp"
+#include "UUU/UUU.hpp"
 #include "ClikeUUU.h"
 #include <vector>
 
 extern "C" {
-	struct game;
+	game;
 	struct game* makegame() {
 		return new game();
 	}
-	bool fill_board(game* g, int bot_id, int* X) {
+	bool fill_board(game* g, int bot_id, const int* X) {
 		return g->fill_board_C(bot_id, X);
 	}
 	bool make_a_move(game* g, int bot_id, int i, int j) {
