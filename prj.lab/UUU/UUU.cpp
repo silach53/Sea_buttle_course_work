@@ -1,6 +1,8 @@
 #include <UUU/UUU.hpp>
 #include <vector>
 #include <map> 
+#include <fstream>
+#include <iostream>
 
 bool game::chek_bot(int bot_id) {
 	if (bot_id < 0 || bot_id>1)
@@ -65,7 +67,10 @@ bool game::fill_board_f(int bot_id) {
 	std::vector<std::vector<int>> Y(n, std::vector<int>(m));
 
 	//read from board.txt
-
+	std::ifstream fin("board.txt");
+	for (int i = 0; i < n; ++i)
+		for (int j = 0; j < m; ++j)
+			std::cin >> Y[i][j];
 
 	return 	 fill_board(bot_id, Y);
 }
