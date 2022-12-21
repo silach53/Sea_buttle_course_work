@@ -3,6 +3,9 @@
 #include <stdlib.h>
 #include <time.h>
 
+int N;
+int M;
+int RS;
 
 void random_board(int* X, int* roster) {
 	for (int i = 0; i < N; ++i) for (int j = 0; j < M; ++j) X[i * N + j] = 0;
@@ -82,15 +85,15 @@ void bot1_make_a_move(struct game* state) {
 }
 
 int main() {
-	/*
-	const int aba = 10;
-	int* x = (int*)malloc(aba * sizeof(int));
-	x[1] = 1;
-	printf("%d", x[1]);
-	*/
 
 	struct game* board_statу = makegame();
-	//board_statу.N;
+	
+
+
+	N = hu_n();
+	M = hu_m();
+	RS = hu_rs();
+	
 
 	srand(time(NULL));
 

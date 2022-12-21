@@ -9,15 +9,16 @@ extern "C" {
 	//__declspec(dllexport) const int N = game::n;
 	//__declspec(dllexport) const int M = game::m;
 	//__declspec(dllexport) const int RS = game::rs;
-	__declspec(dllexport) const int N = 10;
-	__declspec(dllexport) const int M = 10;
-	__declspec(dllexport) const int RS = 2;
+	
 
-	__declspec(dllexport) int с_n();
-	__declspec(dllexport) int с_m();
-	__declspec(dllexport) int с_rs();
+	
+
+	
 
 	struct game;
+
+	
+
 	__declspec(dllexport) struct game* makegame();
 	__declspec(dllexport) bool C_fill_board(struct game* g, int bot_id, const	long* X);
 	__declspec(dllexport) bool fill_board(struct game* g, int bot_id);
@@ -28,7 +29,9 @@ extern "C" {
 	__declspec(dllexport) bool b0_feeled(struct game* g);
 	__declspec(dllexport) bool b1_feeled(struct game* g);
 	__declspec(dllexport) int* ship_roster(struct game* g);
-
+	__declspec(dllexport) int hu_n();
+	__declspec(dllexport) int hu_m();
+	__declspec(dllexport) int hu_rs();
 
 #ifdef __cplusplus
 };
