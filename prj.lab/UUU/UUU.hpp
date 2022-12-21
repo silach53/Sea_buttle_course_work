@@ -27,8 +27,9 @@ public:
 	int                    whos_tern = 0;
 	bool                   end_of_the_game = false;
 	int					   who_won = -1;
-	const int			   n = 10;
-	const int			   m = 10;
+	static const int			   n = 10;
+	static const int			   m = 10;
+	static const int			   rs = 2;
 	std::vector<int> ship_roster;
 	const std::vector<std::vector<int>> CB;
 

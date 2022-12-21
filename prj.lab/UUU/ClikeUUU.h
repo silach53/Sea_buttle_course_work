@@ -1,10 +1,14 @@
 ﻿#ifndef ALEKSEEV_A_R_CLIKEQUEUEP_H
 #define ALEKSEEV_A_R_CLIKEQUEUEP_H
 #include <stdbool.h>
+//#include "UUU/UUU.hpp"
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+	//__declspec(dllexport) const int N = game::n;
+	//__declspec(dllexport) const int M = game::m;
+	//__declspec(dllexport) const int RS = game::rs;
 	__declspec(dllexport) const int N = 10;
 	__declspec(dllexport) const int M = 10;
 	__declspec(dllexport) const int RS = 2;

@@ -4,6 +4,12 @@
 #include <fstream>
 #include <iostream>
 
+game::game() {
+	ship_roster = { 1,1 };
+	std::vector<std::vector<int>> XXX(n, std::vector<int>(m, 0));
+	board = { XXX,XXX };
+}
+
 bool game::chek_bot(int bot_id) {
 	if (bot_id < 0 || bot_id>1)
 		return false;
@@ -145,11 +151,6 @@ bool game::make_a_move(int bot_id, int i, int j) {
 	return true;
 }
 
-game::game() {
-	ship_roster = { 1,1 };
-	std::vector<std::vector<int>> XXX(n, std::vector<int>(m, 0));
-	board = { XXX,XXX };
-}
 
 void game::dfs(std::pair<int, int> v, const std::vector<std::vector<int>>& g,
 	std::map<std::pair<int, int>, int>& used,
