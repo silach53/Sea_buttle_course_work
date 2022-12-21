@@ -34,6 +34,7 @@ public:
 
 	bool fill_board(int bot_id, std::vector<std::vector<int>>& X);
 	bool fill_board_C(int bot_id, const long* X);
+	bool fill_board_f(int bot_id);
 	bool make_a_move(int bot_id, int i, int j);
 	void print_board();
 	game();

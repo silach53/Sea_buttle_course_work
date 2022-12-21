@@ -15,7 +15,8 @@ extern "C" {
 
 	struct game;
 	__declspec(dllexport) struct game* makegame();
-	__declspec(dllexport) bool fill_board(struct game* g, int bot_id, const	long* X);
+	__declspec(dllexport) bool C_fill_board(struct game* g, int bot_id, const	long* X);
+	__declspec(dllexport) bool fill_board(struct game* g, int bot_id);
 	__declspec(dllexport) bool make_a_move(struct game* g, int bot_id, int i, int j);
 	__declspec(dllexport) void print_board(struct game* g);
 	__declspec(dllexport) bool end_of_the_game(struct game* g);

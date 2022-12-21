@@ -60,6 +60,15 @@ void game::print_board() {
 bool game::fill_board_C(int bot_id, const long* Y) {
 	return 	 fill_board(bot_id, X_to_Y(Y));
 }
+bool game::fill_board_f(int bot_id) {
+
+	std::vector<std::vector<int>> Y(n, std::vector<int>(m));
+
+	//read from board.txt
+
+
+	return 	 fill_board(bot_id, Y);
+}
 bool game::fill_board(int bot_id, std::vector < std::vector<int>>& X) {
 
 

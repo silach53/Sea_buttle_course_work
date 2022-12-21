@@ -12,9 +12,12 @@ extern "C" {
 	__declspec(dllexport) struct game* makegame() {
 		return new game();
 	}
-	__declspec(dllexport) bool fill_board(game* g, int bot_id, const long* X) {
+	__declspec(dllexport) bool C_fill_board(game* g, int bot_id, const long* X) {
 		return g->fill_board_C(bot_id, X);
 	}	
+	__declspec(dllexport) bool fill_board(game* g, int bot_id) {
+		return g->fill_board_f(bot_id);
+	}
 	__declspec(dllexport) bool make_a_move(game* g, int bot_id, int i, int j) {
 		return g->make_a_move(bot_id, i, j);
 	}

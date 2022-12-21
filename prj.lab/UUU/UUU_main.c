@@ -43,7 +43,7 @@ void bot0_make_a_move(struct game* state) {
 		int* X = (int*)malloc(N * M * sizeof(int));
 		for (int i = 0; i < N; ++i) for (int j = 0; j < M; ++j) X[i * N + j] = 0;
 		//small_print(X);
-		while (!fill_board(state, 0, X)) {
+		while (!C_fill_board(state, 0, X)) {
 			random_board(X, ship_roster(state));
 			//small_print(X);
 		}
@@ -69,7 +69,7 @@ void bot1_make_a_move(struct game* state) {
 
 
 	if (b1_feeled(state) == 0) {
-		if (!fill_board(state, 1, CB))
+		if (!C_fill_board(state, 1, CB))
 			printf("You made your board incorrecly\n");
 		return;
 	}
