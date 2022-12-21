@@ -1,6 +1,7 @@
 from ctypes import *
 import numpy as np
 
+
 class sea():
     lib             = cdll.LoadLibrary("c:\\Users\\User\\Desktop\\Sea_battle_a_build_course\\prj.lab\\UUU\\Debug\\Lamda.dll")
     makegame        = lib.makegame
