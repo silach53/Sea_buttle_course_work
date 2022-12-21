@@ -65,7 +65,7 @@ void game::print_board() {
 		std::cout << "-";
 	std::cout << "\n";
 }
-bool game::fill_board_C(int bot_id, const long* Y) {
+int game::fill_board_C(int bot_id, const long* Y) {
 	return 	 fill_board(bot_id, X_to_Y(Y));
 }
 bool game::fill_board_f(int bot_id) {
@@ -76,7 +76,8 @@ bool game::fill_board_f(int bot_id) {
 	std::ifstream fin("board.txt");
 	for (int i = 0; i < n; ++i)
 		for (int j = 0; j < m; ++j)
-			std::cin >> Y[i][j];
+			fin >> Y[i][j];
+	fin.close();
 
 	return 	 fill_board(bot_id, Y);
 }
@@ -203,4 +204,12 @@ std::vector<int> game::DFS(const std::vector < std::vector<int>>& X) {
 
 	sort(ans.begin(), ans.end());
 	return ans;
+}
+
+void game::f_in_roster() {
+	std::ofstream fout("roaster.txt");
+	for (int i = 0; i < ship_roster.size(); ++i)
+		fout << ship_roster[i];
+	
+	fout.close();
 }

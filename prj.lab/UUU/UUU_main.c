@@ -47,7 +47,7 @@ void bot0_make_a_move(struct game* state) {
 		for (int i = 0; i < N; ++i) for (int j = 0; j < M; ++j) X[i * N + j] = 0;
 		//small_print(X);
 		while (!C_fill_board(state, 0, X)) {
-			random_board(X, ship_roster(state));
+			random_board(X, C_ship_roster(state));
 			//small_print(X);
 		}
 		return;
