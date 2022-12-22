@@ -8,6 +8,11 @@ game::game() {
 	ship_roster = { 1,1 };
 	std::vector<std::vector<int>> XXX(n, std::vector<int>(m, 0));
 	board = { XXX,XXX };
+	
+	std::ofstream fin("x.txt");
+	fin << (this);
+	fin.close();
+
 }
 
 bool game::chek_bot(int bot_id) {
@@ -209,7 +214,7 @@ std::vector<int> game::DFS(const std::vector < std::vector<int>>& X) {
 void game::f_in_roster() {
 	std::ofstream fout("roaster.txt");
 	for (int i = 0; i < ship_roster.size(); ++i)
-		fout << ship_roster[i];
+		fout << ship_roster[i] << " ";
 	
 	fout.close();
 }

@@ -1,7 +1,6 @@
 from ctypes import *
 import numpy as np
 
-
 class sea():
     lib             = cdll.LoadLibrary("c:\\Users\\User\\Desktop\\Sea_battle_a_build_course\\prj.lab\\UUU\\Debug\\Lamda.dll")
     makegame        = lib.makegame
@@ -27,7 +26,6 @@ class sea():
             f.write(s)
         fill_board_cpp(state,bot_id)    
     def ship_roster(state):
-        print(hex(state))
         sea.ship_roster_f(state)
         with open('roaster.txt','r') as f:
             x = f.read()
@@ -41,8 +39,16 @@ def bot1_make_a_move(state):
     fill_board(state, 1, CB)
 
 if __name__ == "__main__":
-    board_statу = sea.makegame()
-    print(hex(board_statу))
+    #распечатать в в плюсах в файлик адрес этой гадости и возможно подключить стайп в питоне
+    #print()
+    board_statу = c_void_p(sea.makegame())
+    #with open(r'C:\Users\User\Desktop\Sea_battle_a_build_course\prj.lab\UUU\x.txt','r') as f:
+    #        x = f.read()
+    print(x)
+    #board_statу = c_int(int(x,16))
+    board_statу = c_int(int(x,16))
+    print(type(board_statу))
+    #print(hex(board_statу))
     #while(True):
     #bot1_make_a_move(board_statу)
     sea.ship_roster(board_statу)

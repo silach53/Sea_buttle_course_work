@@ -1,6 +1,10 @@
 ﻿#include "UUU/UUU.hpp"
 #include "ClikeUUU.h"
 #include <vector>
+#include <iostream>
+#include <iomanip>
+
+
 
 extern "C" {
 	//game;
@@ -10,7 +14,9 @@ extern "C" {
 	__declspec(dllexport) int hu_rs() { return game::rs; };
 
 	__declspec(dllexport) struct game* makegame() {
-		return new game();
+		auto p = new game();
+		std::cout << std::hex << "makegame() " << p << std::endl;
+		return p;
 	}
 	int C_fill_board(game* g, int bot_id, const long* X) {
 		return int(g->fill_board_C(bot_id, X));
@@ -36,14 +42,15 @@ extern "C" {
 	__declspec(dllexport) 	int b1_feeled(game* g) {
 		return g->b1_feeled;
 	}
-	int* C_ship_roster(game* g) {
+	int* C_ship_roster(struct game* g) {
 		int* rost = (int*)malloc(hu_rs() * sizeof(int));
 		for (int i = 0; i < hu_rs(); ++i) {
 			rost[i] = g->ship_roster[i];
 		}
 		return rost;
 	}
-	void ship_roster(game* g) {
+	__declspec(dllexport)  void ship_roster(struct game* g) {
+		std::cout << std::hex << "ship_roster() " << g  << " " << sizeof(g) << std::endl;
 		g->f_in_roster();
 	}
 };
