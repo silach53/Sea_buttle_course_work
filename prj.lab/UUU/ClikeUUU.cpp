@@ -18,11 +18,8 @@ extern "C" {
 		std::cout << std::hex << "makegame() " << p << std::endl;
 		return p;
 	}
-	int C_fill_board(game* g, int bot_id, const long* X) {
+	__declspec(dllexport) int fill_board(game* g, int bot_id, const long* X) {
 		return int(g->fill_board_C(bot_id, X));
-	}	
-	__declspec(dllexport) int fill_board(game* g, int bot_id) {
-		return g->fill_board_f(bot_id);
 	}
 	__declspec(dllexport) int make_a_move(game* g, int bot_id, int i, int j) {
 		return g->make_a_move(bot_id, i, j);
@@ -42,15 +39,14 @@ extern "C" {
 	__declspec(dllexport) 	int b1_feeled(game* g) {
 		return g->b1_feeled;
 	}
-	int* C_ship_roster(struct game* g) {
+	__declspec(dllexport) int* C_ship_roster(struct game* g) {
 		int* rost = (int*)malloc(hu_rs() * sizeof(int));
 		for (int i = 0; i < hu_rs(); ++i) {
 			rost[i] = g->ship_roster[i];
 		}
 		return rost;
 	}
-	__declspec(dllexport)  void ship_roster(struct game* g) {
-		std::cout << std::hex << "ship_roster() " << g  << " " << sizeof(g) << std::endl;
-		g->f_in_roster();
+	__declspec(dllexport)  void ship_roster(struct game* g,int* roarter) {
+		g->f_in_roster(roarter);
 	}
 };

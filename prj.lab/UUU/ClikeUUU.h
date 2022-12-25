@@ -20,16 +20,15 @@ extern "C" {
 	
 
 	__declspec(dllexport) struct game* makegame();
-	int C_fill_board(struct game* g, int bot_id, const	long* X);
-	__declspec(dllexport) int fill_board(struct game* g, int bot_id);
+	__declspec(dllexport) int fill_board(struct game* g, int bot_id, const	long* X);
 	__declspec(dllexport) int make_a_move(struct game* g, int bot_id, int i, int j);
 	__declspec(dllexport) void print_board(struct game* g);
 	__declspec(dllexport) int end_of_the_game(struct game* g);
 	__declspec(dllexport) int who_won(struct game* g);
 	__declspec(dllexport) int b0_feeled(struct game* g);
 	__declspec(dllexport) int b1_feeled(struct game* g);
-	int* C_ship_roster(struct game* g);
-	__declspec(dllexport) void ship_roster(struct game* g);
+	__declspec(dllexport) int* C_ship_roster(struct game* g);
+	__declspec(dllexport) void ship_roster(struct game* g,int* roarter);
 	__declspec(dllexport) int hu_n();
 	__declspec(dllexport) int hu_m();
 	__declspec(dllexport) int hu_rs();

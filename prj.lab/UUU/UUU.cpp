@@ -54,46 +54,53 @@ void game::pass_tern() {
 }
 
 
+//void game::print_board() {
+//	std::ofstream fin("print_board.txt");
+//	fin << "was print board";
+//	fin.close();
+//	for (int i = 0; i < n; ++i) {
+//		for (int j = 0; j < 2 * m + 1; ++j) {
+//			if (j < m)
+//				std::cout << board.first[i][j];
+//			if (j == m)
+//				std::cout << "|";
+//			if (j > m)
+//				std::cout << board.second[i][j - m - 1];
+//		}
+//		std::cout << "\n";
+//	}
+//	for (int j = 0; j < 2 * m + 1; ++j)
+//		std::cout << "-";
+//	std::cout << "\n";
+//}
+
 void game::print_board() {
+	std::ofstream fout("print_board.txt", std::ios::app);
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < 2 * m + 1; ++j) {
 			if (j < m)
-				std::cout << board.first[i][j];
+				fout << board.first[i][j];
 			if (j == m)
-				std::cout << "|";
+				fout << "|";
 			if (j > m)
-				std::cout << board.second[i][j - m - 1];
+				fout << board.second[i][j - m - 1];
 		}
-		std::cout << "\n";
+		fout << "\n";
 	}
 	for (int j = 0; j < 2 * m + 1; ++j)
-		std::cout << "-";
-	std::cout << "\n";
+		fout << "-";
+	fout << "\n";
+	fout.close();
 }
+
 int game::fill_board_C(int bot_id, const long* Y) {
 	return 	 fill_board(bot_id, X_to_Y(Y));
 }
-bool game::fill_board_f(int bot_id) {
-
-	std::vector<std::vector<int>> Y(n, std::vector<int>(m));
-
-	//read from board.txt
-	std::ifstream fin("board.txt");
-	for (int i = 0; i < n; ++i)
-		for (int j = 0; j < m; ++j)
-			fin >> Y[i][j];
-	fin.close();
-
-	return 	 fill_board(bot_id, Y);
-}
 bool game::fill_board(int bot_id, std::vector < std::vector<int>>& X) {
-
-
 	if (!chek_bot(bot_id))
 		return false;
 
 	//Chek the board
-
 	if (X.size() != n)
 		return false;
 
@@ -211,10 +218,8 @@ std::vector<int> game::DFS(const std::vector < std::vector<int>>& X) {
 	return ans;
 }
 
-void game::f_in_roster() {
-	std::ofstream fout("roaster.txt");
+void game::f_in_roster(int* roarter) {
 	for (int i = 0; i < ship_roster.size(); ++i)
-		fout << ship_roster[i] << " ";
-	
-	fout.close();
+		roarter[i]= ship_roster[i];
+
 }

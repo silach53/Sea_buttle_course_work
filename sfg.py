@@ -4,52 +4,56 @@ import numpy as np
 class sea():
     lib             = cdll.LoadLibrary("c:\\Users\\User\\Desktop\\Sea_battle_a_build_course\\prj.lab\\UUU\\Debug\\Lamda.dll")
     makegame        = lib.makegame
-    fill_board_cpp  = lib.fill_board
+    lib.makegame.restype = c_void_p
+    fill_board_c      = lib.fill_board
     make_a_move     = lib.make_a_move     #(struct game* g, int bot_id, int i, int j);
     print_board     = lib.print_board     #(struct game* g);
     end_of_the_game = lib.end_of_the_game #(struct game* g);
     who_won         = lib.who_won         #(struct game* g);
     b0_feeled       = lib.b0_feeled       #(struct game* g);
     b1_feeled       = lib.b1_feeled       #(struct game* g);
-    ship_roster_f   = lib.ship_roster     #(struct game* g);
+    ship_roster_f   = lib.ship_roster     #(struct game* g,int* x);
     n               = lib.hu_n();
     m               = lib.hu_m();
     rs              = lib.hu_rs();
     
     def fill_board(state,bot_id,mas):
-        s = ""
+        #convert into c like array
+        arr=[]
         for x in mas:
-            for y in x:
-                s+=y+' '
-            s+='\n'
-        with open("board.txt",'r') as f:
-            f.write(s)
-        fill_board_cpp(state,bot_id)    
+            for y in x: arr.append(y)  
+        arr_c = (c_int * (sea.n*sea.m))(*arr)
+        sea.fill_board_c(state,bot_id,arr_c)
+        
     def ship_roster(state):
-        sea.ship_roster_f(state)
-        with open('roaster.txt','r') as f:
-            x = f.read()
-        print(x)
-    
+        arr = [0 for x in range(sea.rs)]
+        arr_c = (c_int * (sea.rs))(*arr)
+        sea.ship_roster_f(board_statу,arr_c)
+
+        result = []
+        for x in arr_c:
+            result.append(int(x))
+        return result
+
+def bot0_make_a_move(state):
+    my_board =  [ [0 for x in range(sea.m)] for x in range(sea.n)]
+    my_board[0][0]=1
+    my_board[1][1]=1
+    sea.fill_board(state, 0, my_board)
 
 def bot1_make_a_move(state):
-    CB = [0 for x in range(n*m)];
-    CB[0]=1
-    CB[1]=1
-    fill_board(state, 1, CB)
+    my_board =  [ [0 for x in range(sea.m)] for x in range(sea.n)]
+    my_board[0][0]=1
+    my_board[1][1]=1
+    sea.fill_board(state, 1, my_board)
 
 if __name__ == "__main__":
-    #распечатать в в плюсах в файлик адрес этой гадости и возможно подключить стайп в питоне
-    #print()
     board_statу = c_void_p(sea.makegame())
-    #with open(r'C:\Users\User\Desktop\Sea_battle_a_build_course\prj.lab\UUU\x.txt','r') as f:
-    #        x = f.read()
-    print(x)
-    #board_statу = c_int(int(x,16))
-    board_statу = c_int(int(x,16))
-    print(type(board_statу))
-    #print(hex(board_statу))
-    #while(True):
-    #bot1_make_a_move(board_statу)
-    sea.ship_roster(board_statу)
+    print('ship roster')
+    print(sea.ship_roster(board_statу))
+    
+    #bot0_make_a_move(board_statу)
+    
+    #sea.fill_board(board_statу,0,my_board)
+    #sea.print_board(board_statу)
     
