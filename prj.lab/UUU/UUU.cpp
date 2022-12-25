@@ -9,9 +9,9 @@ game::game() {
 	std::vector<std::vector<int>> XXX(n, std::vector<int>(m, 0));
 	board = { XXX,XXX };
 	
-	std::ofstream fin("x.txt");
+	/*std::ofstream fin("x.txt");
 	fin << (this);
-	fin.close();
+	fin.close();*/
 
 }
 
