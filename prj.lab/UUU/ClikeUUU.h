@@ -25,15 +25,9 @@ extern "C" {
 	//__declspec(dllexport) const int N = game::n;
 	//__declspec(dllexport) const int M = game::m;
 	//__declspec(dllexport) const int RS = game::rs;
-	
-
-	
-
-	
 
 	struct game;
 
-	
 
 	EXPORT struct game* makegame();
 	EXPORT int fill_board(struct game* g, int bot_id, const	long* X);
@@ -45,9 +39,9 @@ extern "C" {
 	EXPORT int b1_feeled(struct game* g);
 	EXPORT int* C_ship_roster(struct game* g);
 	EXPORT void ship_roster(struct game* g,int* roarter);
-	EXPORT int hu_n();
-	EXPORT int hu_m();
-	EXPORT int hu_rs();
+	EXPORT int hu_n(game* g);
+	EXPORT int hu_m(game* g);
+	EXPORT int hu_rs(game* g);
 
 #ifdef __cplusplus
 };

@@ -9,9 +9,9 @@
 extern "C" {
 	//game;
 
-	EXPORT int hu_n() { return game::n; };
-	EXPORT int hu_m() { return game::m; };
-	EXPORT int hu_rs() { return game::rs; };
+	EXPORT int hu_n(game* g) { return g->n; };
+	EXPORT int hu_m(game* g) { return g->m; };
+	EXPORT int hu_rs(game* g) { return g->rs; };
 
 	EXPORT struct game* makegame() {
 		auto p = new game();
@@ -40,8 +40,8 @@ extern "C" {
 		return g->b1_feeled;
 	}
 	EXPORT int* C_ship_roster(struct game* g) {
-		int* rost = (int*)malloc(hu_rs() * sizeof(int));
-		for (int i = 0; i < hu_rs(); ++i) {
+		int* rost = (int*)malloc(hu_rs(g) * sizeof(int));
+		for (int i = 0; i < hu_rs(g); ++i) {
 			rost[i] = g->ship_roster[i];
 		}
 		return rost;

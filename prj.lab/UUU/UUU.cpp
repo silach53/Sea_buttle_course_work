@@ -3,9 +3,24 @@
 #include <map> 
 #include <fstream>
 #include <iostream>
+#include <string>
+#include <algorithm>
 
 game::game() {
-	ship_roster = { 1,1 };
+	std::ifstream fin("config.txt");
+	fin >> n >> m;
+	
+	std::string s;
+	getline(fin, s); getline(fin, s);
+	fin.close();
+
+	//replace(s.begin(),s.end()," ", "");
+	for(int i =0; i < s.size(); i+=2)
+		ship_roster.push_back(s[i]-'0');
+	sort(ship_roster.begin(), ship_roster.end());
+
+	rs = ship_roster.size();
+	
 	std::vector<std::vector<int>> XXX(n, std::vector<int>(m, 0));
 	board = { XXX,XXX };
 	

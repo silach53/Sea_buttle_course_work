@@ -15,9 +15,9 @@ class sea:
     b0_feeled       = lib.b0_feeled       #(struct game* g);
     b1_feeled       = lib.b1_feeled       #(struct game* g);
     ship_roster_f   = lib.ship_roster     #(struct game* g,int* x);
-    n               = lib.hu_n();
-    m               = lib.hu_m();
-    rs              = lib.hu_rs();
+    n               = lib.hu_n;
+    m               = lib.hu_m;
+    rs              = lib.hu_rs;
 
     def makegame():
         return c_void_p(sea.makegame_c())
@@ -25,15 +25,18 @@ class sea:
     def fill_board(state,bot_id,mas):
         #convert into c like array
         arr=[]
+        n = sea.n(state)
+        m = sea.m(state)
         for x in mas:
             for y in x: arr.append(y)  
-        arr_c = (c_int * (sea.n*sea.m))(*arr)
+        arr_c = (c_int * (n*m))(*arr)
         return sea.fill_board_c(state,bot_id,arr_c)
         
     def ship_roster():
         state = sea.makegame()
-        arr = [0 for x in range(sea.rs)]
-        arr_c = (c_int * (sea.rs))(*arr)
+        rs = sea.rs(state)
+        arr = [0 for x in range(rs)]
+        arr_c = (c_int * (rs))(*arr)
         sea.ship_roster_f(state,arr_c)
         result = []
         for x in arr_c:

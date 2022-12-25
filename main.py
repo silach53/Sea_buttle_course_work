@@ -1,15 +1,24 @@
 from sea import *
 from random import randint as rand
+from random import seed
 
-n = sea.n
-m = sea.m
+board_statу = sea.makegame()
+n = sea.n(board_statу)
+m = sea.m(board_statу)
+rs = sea.rs(board_statу)
 roster = sea.ship_roster()
+print(roster)
+with open('print_board.txt','w') as f:
+    f.write('b_random  |b_const\n')
 
-def random_board():
+def random_board(rando = 0):
+    if(rando):
+        seed(rando)
+    
     X = [[0 for x in range(m)] for y in range(n)]
     #Заполняет доску 	
     #Кораблики не должны стоять рядом - но попробуем на это забить
-    for t in range(sea.rs):
+    for t in range(rs):
             x = roster[t]
             i = rand(0,n - x - 1)
             j = rand(0,m - x - 1)
@@ -37,14 +46,14 @@ def bot0_make_a_move(state):
 
 #Deterministic bot
 def bot1_make_a_move(state):
-    CB = [[0 for x in range(m)] for y in range(n)]
-    CB[5][5] = 1
-    CB[8][3] = 1
     if (sea.b1_feeled(state) == 0):
-        if (not sea.fill_board(state, 1, CB)):
-            print("You made your board incorrecly\n")
+        X = [[0 for x in range(m)] for y in range(n)]
+        rando = 2344111
+        while (not sea.fill_board(state, 1, X)):
+            X = random_board(rando)
+            rando+=1
         return
-
+        
     #Детерминированно перебираем достку
     for i in range(n):
         for j in range(m):
@@ -52,7 +61,6 @@ def bot1_make_a_move(state):
                 return
 
 if __name__ == "__main__":
-    board_statу = sea.makegame()
     while (True):
         bot0_make_a_move(board_statу)
         if (sea.end_of_the_game(board_statу)):

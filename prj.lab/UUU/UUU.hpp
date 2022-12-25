@@ -22,14 +22,14 @@
 #ifdef __cplusplus
 struct game {
 public:
-	bool                   b0_feeled = false;
-	bool                   b1_feeled = false;
-	int                    whos_tern = 0;
-	bool                   end_of_the_game = false;
-	int					   who_won = -1;
-	static const int			   n = 10;
-	static const int			   m = 10;
-	static const int			   rs = 2;
+	bool b0_feeled = false;
+	bool b1_feeled = false;
+	int  whos_tern = 0;
+	bool end_of_the_game = false;
+	int	 who_won = -1;
+	int  n;
+	int	 m;
+	int	 rs;
 	std::vector<int> ship_roster;
 	const std::vector<std::vector<int>> CB;
 
