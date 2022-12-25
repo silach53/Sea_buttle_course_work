@@ -28,9 +28,10 @@ class sea:
         for x in mas:
             for y in x: arr.append(y)  
         arr_c = (c_int * (sea.n*sea.m))(*arr)
-        sea.fill_board_c(state,bot_id,arr_c)
+        return sea.fill_board_c(state,bot_id,arr_c)
         
-    def fank_ship_roster(state):
+    def ship_roster():
+        state = sea.makegame()
         arr = [0 for x in range(sea.rs)]
         arr_c = (c_int * (sea.rs))(*arr)
         sea.ship_roster_f(state,arr_c)
@@ -38,7 +39,3 @@ class sea:
         for x in arr_c:
             result.append(int(x))
         return result
-
-    ship_roster = []
-
-ship_roster = sea.fank_ship_roster(sea.makegame())
