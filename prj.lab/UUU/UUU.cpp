@@ -109,9 +109,10 @@ void game::print_board() {
 }
 
 int game::fill_board_C(int bot_id, const long* Y) {
-    std::vector<std::vector<int>> X = X_to_Y(Y);
+	std::vector<std::vector<int>> X = X_to_Y(Y);
 	return 	 fill_board(bot_id, X);
 }
+
 bool game::fill_board(int bot_id, std::vector < std::vector<int>>& X) {
 	if (!chek_bot(bot_id))
 		return false;
@@ -237,5 +238,4 @@ std::vector<int> game::DFS(const std::vector < std::vector<int>>& X) {
 void game::f_in_roster(int* roarter) {
 	for (int i = 0; i < ship_roster.size(); ++i)
 		roarter[i]= ship_roster[i];
-
 }

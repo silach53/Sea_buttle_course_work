@@ -37,7 +37,6 @@ def bot0_make_a_move(state):
         X = [[0 for x in range(m)] for y in range(n)]
         while (not sea.fill_board(state, 0, X)):
             X = random_board()
-            print(sea.fill_board(state, 0, X))
         return
 
     i,j = -1,-1#заполнить случайными 
