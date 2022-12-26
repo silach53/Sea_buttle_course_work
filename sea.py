@@ -1,10 +1,10 @@
 from ctypes import *
-import numpy as np
-
+import os
 
 class sea:
     
-    lib             = cdll.LoadLibrary("c:\\Users\\User\\Desktop\\Sea_battle_a_build_course\\prj.lab\\UUU\\Debug\\Lamda.dll")
+    #lib             = cdll.LoadLibrary("c:\\Users\\User\\Desktop\\Sea_battle_a_build_course\\prj.lab\\UUU\\Debug\\Lamda.dll")
+    lib             = cdll.LoadLibrary('/Users/workalexandr/Documents/Sea_battle_a_build_course/prj.lab/UUU/Debug/libLamda.dylib')
     makegame_c        = lib.makegame
     lib.makegame.restype = c_void_p
     fill_board_c      = lib.fill_board

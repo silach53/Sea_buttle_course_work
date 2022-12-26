@@ -1,4 +1,4 @@
-﻿#ifndef ALEKSEEV_A_R_QUEUEP_H
+#ifndef ALEKSEEV_A_R_QUEUEP_H
 #define ALEKSEEV_A_R_QUEUEP_H
 #include <algorithm>
 #include <vector>
