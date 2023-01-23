@@ -1,11 +1,21 @@
 from ctypes import *
 import os
 import numpy as np
+import platform
 
 class sea:
     
-    lib             = cdll.LoadLibrary("c:\\Users\\User\\Desktop\\Sea_battle_a_build_course\\prj.lab\\UUU\\Debug\\Lamda.dll")
-    #lib              = cdll.LoadLibrary('/Users/workalexandr/Documents/Sea_battle_a_build_course/prj.lab/UUU/Debug/libLamda.dylib')
+    lib             = None
+    if platform.system() == "Windows":
+        # code for Windows
+        lib = cdll.LoadLibrary("c:\\Users\\User\\Desktop\\Sea_battle_a_build_course\\prj.lab\\UUU\\Debug\\Lamda.dll")
+    elif platform.system() == "Darwin":
+        # code for Mac
+        lib = cdll.LoadLibrary('/Users/workalexandr/Documents/Sea_battle_a_build_course/prj.lab/UUU/Debug/libLamda.dylib')
+    else:
+        # code for other operating system
+        print(1/0)
+     
     makegame_c        = lib.makegame
     lib.makegame.restype = c_void_p
     fill_board_c      = lib.fill_board
