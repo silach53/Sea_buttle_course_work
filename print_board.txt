@@ -1,1 +1,0 @@
-b_random  |b_const

@@ -1,4 +1,4 @@
-﻿#include <UUU/UUU.hpp>
+#include <UUU/UUU.hpp>
 std::vector<std::vector<int>> CB = {
 	{0,0,0,0,0,0,0,0,0,0},
 	{0,0,0,0,0,0,0,0,0,0},
@@ -19,13 +19,13 @@ void random_board(std::vector<std::vector<int>>& Y,std::vector<int> roster) {
 	//Заполняет доску 
 
 	//Кораблики не должны стоять рядом - но попробуем на это забить
-	int i, j, or;
+	int i, j, qor;
 	for (auto x : roster) {
 		i = rand() % (n-x);
 		j = rand() % (m-x);
-		or = rand() % 2;
+		qor = rand() % 2;
 
-		if (or == 0) {
+		if (qor == 0) {
 			for (int k = 0; k < x; ++k)
 				X[i+k][j] = 1;
 		}
