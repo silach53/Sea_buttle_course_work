@@ -6,3 +6,5 @@ enable_testing()
 
 include_directories(prj.lab prj.thirdparty)
 add_subdirectory(prj.lab)
+
+install(TARGETS ${Sea_battle_course} DESTINATION Lamda)

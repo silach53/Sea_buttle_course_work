@@ -21,14 +21,7 @@
 
 extern "C" {
 #endif
-
-	//__declspec(dllexport) const int N = game::n;
-	//__declspec(dllexport) const int M = game::m;
-	//__declspec(dllexport) const int RS = game::rs;
-
 	struct game;
-
-
 	EXPORT struct game* makegame();
 	EXPORT int fill_board(struct game* g, int bot_id, const	long* X);
 	EXPORT int make_a_move(struct game* g, int bot_id, int i, int j);
