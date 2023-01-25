@@ -9,10 +9,10 @@ class sea:
     lib             = None
     if platform.system() == "Windows":
         # code for Windows
-        lib = cdll.LoadLibrary("c:\\Users\\User\\Desktop\\Sea_battle_a_build_course\\prj.lab\\UUU\\Debug\\Lamda.dll")
+        lib = cdll.LoadLibrary(r"./Lamda.dll")
     elif platform.system() == "Darwin":
         # code for Mac
-        lib = cdll.LoadLibrary('/Users/workalexandr/Documents/Sea_battle_a_build_course/prj.lab/UUU/Debug/libLamda.dylib')
+        lib = cdll.LoadLibrary(r'./libLamda.dylib')
     else:
         # code for other operating system
         print(1/0)

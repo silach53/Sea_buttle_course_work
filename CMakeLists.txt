@@ -7,4 +7,12 @@ enable_testing()
 include_directories(prj.lab prj.thirdparty)
 add_subdirectory(prj.lab)
 
-install(TARGETS ${Sea_battle_course} DESTINATION Lamda)
+
+if(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
+  set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_BINARY_DIR}/install" CACHE PATH "..." FORCE)
+endif()
+
+install(TARGETS Lamda RUNTIME DESTINATION .)
+install(FILES main.py DESTINATION .)
+install(FILES sea.py DESTINATION .)
+install(FILES config.txt DESTINATION .)
