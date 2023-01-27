@@ -5,7 +5,7 @@ import platform
 
 import os
 # assign directory
-directory = ''
+directory = os.getcwd()
 
 
 
