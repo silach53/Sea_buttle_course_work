@@ -3,13 +3,21 @@ import os
 import numpy as np
 import platform
 
+import os
+# assign directory
+directory = ''
+
+
+
 class sea:
     
 
     lib             = None
     if platform.system() == "Windows":
-        # code for Windows
-        lib = cdll.LoadLibrary(r"./Lamda.dll")
+        for filename in os.listdir(directory):
+            f = os.path.join(directory, filename)
+            if (os.path.isfile(f) and f[-4:]=='.dll'):
+                lib = cdll.LoadLibrary(f)
     elif platform.system() == "Darwin":
         # code for Mac
         lib = cdll.LoadLibrary(r'./libLamda.dylib')
